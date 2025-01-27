@@ -1,0 +1,14 @@
+name: simpy_app
+channels:
+  - conda-forge
+dependencies:
+  - jupyterlab=4.3.4
+  - jupyterlab-spellchecker=0.8.4
+  - numpy=2.2.2
+  - pandas=2.2.3
+  - pip=25.0
+  - plotly=5.24.1
+  - python=3.11
+  - simpy=4.1.1
+  - pip:
+    - streamlit
