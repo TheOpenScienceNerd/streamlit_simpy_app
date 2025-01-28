@@ -3,10 +3,6 @@ from model import (
     multiple_replications
 )
 
-from output_analysis import (
-    create_user_controlled_hist
-)
-
 # experiment parameters
 
 # no. resources
