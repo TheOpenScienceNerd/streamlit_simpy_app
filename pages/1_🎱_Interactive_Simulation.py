@@ -6,9 +6,9 @@ histogram can be selected by the user.
 
 import streamlit as st
 
-from model import Experiment, multiple_replications
+from callcentresim.model import Experiment, multiple_replications
 
-from output_analysis import create_user_controlled_hist
+from callcentresim.output_analysis import create_user_controlled_hist
 
 INTRO_FILE = "./resources/model_info.md"
 

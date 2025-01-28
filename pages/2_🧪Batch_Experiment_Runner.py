@@ -5,8 +5,8 @@ to the simulation model.
 import streamlit as st
 import pandas as pd
 
-from model import Experiment, run_all_experiments
-from output_analysis import create_example_csv, experiment_summary_frame
+from callcentresim.model import Experiment, run_all_experiments
+from callcentresim.output_analysis import create_example_csv, experiment_summary_frame
 
 import io
 

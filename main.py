@@ -1,4 +1,4 @@
-from model import (
+from callcentresim.model import (
     Experiment,
     multiple_replications
 )
