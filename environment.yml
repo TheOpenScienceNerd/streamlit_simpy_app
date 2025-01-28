@@ -2,6 +2,8 @@ name: simpy_app
 channels:
   - conda-forge
 dependencies:
+  - black
+  - flake8
   - jupyterlab=4.3.4
   - jupyterlab-spellchecker=0.8.4
   - numpy=2.2.2
