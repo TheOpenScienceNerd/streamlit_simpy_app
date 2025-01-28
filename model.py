@@ -711,3 +711,39 @@ def multiple_replications(
     df_results.index.name = "rep"
 
     return df_results
+
+def run_all_experiments(
+        experiments, 
+        wu_period=WARM_UP_PERIOD,
+        rc_period=RESULTS_COLLECTION_PERIOD,
+        n_reps=5):
+    '''
+    Run each of the scenarios for a specified results
+    collection period and replications.
+    
+    Params:
+    ------
+    experiments: dict
+        dictionary of Experiment objects
+        
+    rc_period: float
+        model run length
+    
+    '''
+    print('Model experiments:')
+    print(f'No. experiments to execute = {len(experiments)}\n')
+
+    experiment_results = {}
+    for exp_name, experiment in experiments.items():
+        
+        print(f'Running {exp_name}', end=' => ')
+        results = multiple_replications(experiment, wu_period, rc_period, n_reps)
+        print('done.\n')
+        
+        #save the results
+        experiment_results[exp_name] = results
+    
+    print('All experiments are complete.')
+    
+    # format thje results
+    return experiment_results
