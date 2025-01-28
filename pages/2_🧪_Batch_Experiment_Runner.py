@@ -5,7 +5,7 @@ to the simulation model.
 import streamlit as st
 import pandas as pd
 
-from callcentresim.model import Experiment, run_all_experiments
+from callcentresim.model import create_experiments, run_all_experiments
 from callcentresim.output_analysis import create_example_csv, experiment_summary_frame
 
 from app_utility.file_io import read_file_contents
@@ -13,37 +13,6 @@ from app_utility.file_io import read_file_contents
 
 INFO_1 = '**Execute multiple experiments in a batch**'
 INFO_2 = '### Upload a CSV containing input parameters.'
-
-def create_experiments(df_experiments):
-    '''
-    Returns dictionary of Experiment objects based on contents of a dataframe
-
-    Params:
-    ------
-    df_experiments: pandas.DataFrame
-        Dataframe of experiments. First two columns are id, name followed by 
-        variable names.  No fixed width
-
-    Returns:
-    --------
-    dict
-    '''
-    experiments = {}
-    
-    # experiment input parameter dictionary
-    exp_dict = df_experiments[df_experiments.columns[1:]].T.to_dict()
-    # names of experiments
-    exp_names = df_experiments[df_experiments.columns[0]].T.to_list()
-    
-    print(exp_dict)
-    print(exp_names)
-
-    # loop through params and create Experiment objects.
-    for name, params in zip(exp_names, exp_dict.values()):
-        print(name)
-        experiments[name] = Experiment(**params)
-    
-    return experiments
 
 # We add in a title for our web app's page
 st.title("Urgent care call centre")

@@ -751,3 +751,34 @@ def run_all_experiments(
 
     # format thje results
     return experiment_results
+
+def create_experiments(df_experiments):
+    '''
+    Returns dictionary of Experiment objects based on contents of a dataframe
+
+    Params:
+    ------
+    df_experiments: pandas.DataFrame
+        Dataframe of experiments. First two columns are id, name followed by 
+        variable names.  No fixed width
+
+    Returns:
+    --------
+    dict
+    '''
+    experiments = {}
+    
+    # experiment input parameter dictionary
+    exp_dict = df_experiments[df_experiments.columns[1:]].T.to_dict()
+    # names of experiments
+    exp_names = df_experiments[df_experiments.columns[0]].T.to_list()
+    
+    print(exp_dict)
+    print(exp_names)
+
+    # loop through params and create Experiment objects.
+    for name, params in zip(exp_names, exp_dict.values()):
+        print(name)
+        experiments[name] = Experiment(**params)
+    
+    return experiments
