@@ -73,7 +73,7 @@ st.markdown(INFO_1)
 #download_file = st.download_button()
 
 with st.expander("Template to use for experiments"):
-    st.markdown(read_file_contents("txt/batch_upload_txt.md"))
+    st.markdown(read_file_contents("resources/batch_upload_txt.md"))
     template = create_example_csv()
     st.dataframe(template, hide_index=True)
 
