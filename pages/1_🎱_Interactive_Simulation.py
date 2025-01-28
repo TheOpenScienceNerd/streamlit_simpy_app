@@ -7,28 +7,11 @@ histogram can be selected by the user.
 import streamlit as st
 
 from callcentresim.model import Experiment, multiple_replications
-
 from callcentresim.output_analysis import create_user_controlled_hist
 
+from app_utility.file_io import read_file_contents
+
 INTRO_FILE = "./resources/model_info.md"
-
-
-def read_file_contents(file_name):
-    """'
-    Read the contents of a file.
-
-    Params:
-    ------
-    file_name: str
-        Path to file.
-
-    Returns:
-    -------
-    str
-    """
-    with open(file_name) as f:
-        return f.read()
-
 
 #  update to wide page settings to help display results side by side
 st.set_page_config(
