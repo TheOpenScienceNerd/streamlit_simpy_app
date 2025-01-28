@@ -1,18 +1,22 @@
-'''
+"""
 The code in this streamlit provides a way to add multiple simulation control
 to the simulation model.
-'''
+"""
+
 import streamlit as st
 import pandas as pd
 
 from callcentresim.model import create_experiments, run_all_experiments
-from callcentresim.output_analysis import create_example_csv, experiment_summary_frame
+from callcentresim.output_analysis import (
+    create_example_csv,
+    experiment_summary_frame,
+)
 
 from app_utility.file_io import read_file_contents
 
 
-INFO_1 = '**Execute multiple experiments in a batch**'
-INFO_2 = '### Upload a CSV containing input parameters.'
+INFO_1 = "**Execute multiple experiments in a batch**"
+INFO_2 = "### Upload a CSV containing input parameters."
 
 # We add in a title for our web app's page
 st.title("Urgent care call centre")
@@ -20,7 +24,7 @@ st.title("Urgent care call centre")
 # show the introductory markdown
 st.markdown(INFO_1)
 
-#download_file = st.download_button()
+# download_file = st.download_button()
 
 with st.expander("Template to use for experiments"):
     st.markdown(read_file_contents("resources/batch_upload_txt.md"))
@@ -34,11 +38,11 @@ df_results = pd.DataFrame()
 if uploaded_file is not None:
     # assumes CSV
     df_experiments = pd.read_csv(uploaded_file)
-    st.write('**Loaded Experiments**')
+    st.write("**Loaded Experiments**")
     st.table(df_experiments)
 
     # loop through scenarios, create and run model
-    n_reps = st.slider('Replications', 3, 30, 5, step=1)
+    n_reps = st.slider("Replications", 3, 30, 5, step=1)
     # warm-up and data collection parameters
     warm_up_period = st.number_input("Warm-up period", 0, 1_000, step=1)
 
@@ -46,23 +50,19 @@ if uploaded_file is not None:
         "Data collection period", 1_000, 10_000, step=1
     )
 
-    if st.button('Execute Experiments'):
+    if st.button("Execute Experiments"):
         # create the batch of experiments based on upload
-        experiments = create_experiments(df_experiments) 
+        experiments = create_experiments(df_experiments)
         print(experiments)
-        with st.spinner('Running all experiments'):
-            
+        with st.spinner("Running all experiments"):
+
             results = run_all_experiments(
-                experiments, 
-                warm_up_period,
-                results_collection_period,
-                n_reps
+                experiments, warm_up_period, results_collection_period, n_reps
             )
-            st.success('Done!')
-            
+            st.success("Done!")
+
             # combine results into a single summary table.
             df_results = experiment_summary_frame(results)
             print(df_results.round(2))
             # display in the app via table
             st.dataframe(df_results.round(2))
-
