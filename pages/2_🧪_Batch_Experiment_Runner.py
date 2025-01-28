@@ -8,30 +8,11 @@ import pandas as pd
 from callcentresim.model import Experiment, run_all_experiments
 from callcentresim.output_analysis import create_example_csv, experiment_summary_frame
 
-import io
+from app_utility.file_io import read_file_contents
 
 
 INFO_1 = '**Execute multiple experiments in a batch**'
 INFO_2 = '### Upload a CSV containing input parameters.'
-
-
-def read_file_contents(path):
-    """
-    Import local file and return as a UTF-8 string
-
-    Parameters:
-    ----------
-    path: str
-        e.g. file_name.md
-
-    Returns:
-    --------
-    utf-8 str
-
-    """
-    file = io.open(path, mode="r", encoding="utf-8")
-    return file.read()
-
 
 def create_experiments(df_experiments):
     '''
