@@ -10,6 +10,7 @@ from callcentresim.model import Experiment, multiple_replications
 from callcentresim.output_analysis import create_user_controlled_hist
 
 from app_utility.file_io import read_file_contents
+from app_utility.results import get_kpi_name_mappings
 
 INTRO_FILE = "./resources/model_info.md"
 
@@ -82,6 +83,9 @@ if st.button("Run simulation"):
     with col2.expander("Histogram", expanded=True):
 
         #  call updated plotly function
-        fig = create_user_controlled_hist(results)
+        fig = create_user_controlled_hist(
+            results, 
+            name_mappings=get_kpi_name_mappings()
+        )
 
         st.plotly_chart(fig, use_container_width=True)

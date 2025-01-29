@@ -1,9 +1,8 @@
 import streamlit as st
 
-
 #  update to wide page settings to help display results side by side
 st.set_page_config(
-    page_title="Urgent Care Sim App",
+    page_title="Urgent Care SimPy App",
     layout="wide",
     initial_sidebar_state="expanded",
 )
