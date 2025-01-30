@@ -82,6 +82,7 @@ if st.button("Run simulation"):
 
     with col2.expander("Histogram", expanded=True):
 
+
         #  call updated plotly function
         fig = create_user_controlled_hist(
             results, 
